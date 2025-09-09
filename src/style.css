@@ -1,0 +1,72 @@
+:root{
+    --main-color: #726EFF;
+}
+
+.todo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 12px;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.todo__title {
+    font-size: 1rem;
+}
+
+.todo__head {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.add-task {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+
+.add-task__input {
+    border: 1px solid var(--main-color);
+    width: 80%;
+    padding: 10px;
+}
+
+.add-task__btn {
+    background-color: var(--main-color);
+    border: 0;
+    width: 30%;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+
+input[type=checkbox]:checked + label
+{
+    text-decoration: line-through;
+}
+
+.todo__list
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.task 
+{
+    font-size: 2rem;
+}
+
+.task__checkbox{
+    
+}
