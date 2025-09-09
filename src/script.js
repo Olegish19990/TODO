@@ -2,9 +2,22 @@ const btn = document.querySelector(".add-task__btn");
   /** @type {HTMLInputElement|null} */
   const input = document.querySelector(".add-task__input");
   const list = document.querySelector(".todo__list");
+  
 
 
 
+function taskDelete(e)
+{
+  const task = e.target.closest("div");
+  
+  /**@type {object[]} */
+  let arrayInStorage = JSON.parse(localStorage.getItem("TaskList"));
+
+  arrayInStorage = arrayInStorage.filter(taskForDelete => taskForDelete.id !== task.dataset.id);
+
+  localStorage.setItem("TaskList",JSON.stringify(arrayInStorage));
+
+}
 document.addEventListener("DOMContentLoaded", () => {
 
   function createTask() {
@@ -25,11 +38,27 @@ document.addEventListener("DOMContentLoaded", () => {
       changeTaskStatus(e);
     });
 
+    const taskDeleteButton = document.createElement("button");
+    taskDeleteButton.type = "button";
+    taskDeleteButton.classList.add("task__delete_btn");
+    taskDeleteButton.textContent = "DELETE"
+
+    taskDeleteButton.addEventListener("click",(e)=>
+    {
+      taskDelete(e);
+
+      const taskForDelete = e.target.closest("div")
+      taskForDelete.remove();
+    });
+
+
     task.classList.add("task");
 
     task.appendChild(task_checkbox);
 
     task.appendChild(task_text);
+
+    task.appendChild(taskDeleteButton);
 
     list.appendChild(task);
 
@@ -94,8 +123,22 @@ function loadFromStorage() {
     const task_text = document.createElement("label");
     task_text.textContent = taskInfo.text;
 
+
+    const taskDeleteButton = document.createElement("button");
+    taskDeleteButton.type = "button";
+    taskDeleteButton.classList.add("task__delete_btn");
+    taskDeleteButton.textContent = "DELETE"
+
+    taskDeleteButton.addEventListener("click",(e)=>
+    {
+      taskDelete(e);
+
+      const taskForDelete = e.target.closest("div")
+      taskForDelete.remove();
+    });
     task.appendChild(task_checkbox);
     task.appendChild(task_text);
+    task.appendChild(taskDeleteButton);
     list.appendChild(task);
   }
 }
